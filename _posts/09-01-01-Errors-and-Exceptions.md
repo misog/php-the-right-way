@@ -1,7 +1,6 @@
 ---
-title:  Errors and Exceptions
+title:  Chyby a výnimky
 anchor: errors_and_exceptions
 ---
 
-# Errors and Exceptions {#errors_and_exceptions_title}
-
+# Chyby a výnimky {#errors_and_exceptions_title}
