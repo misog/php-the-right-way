@@ -1,5 +1,6 @@
 ---
+title: Bezpečnosť
 anchor: security
 ---
 
-# Security {#security_title}
+# Bezpečnosť {#security_title}
