@@ -20,17 +20,17 @@ dedičnosti, konštruktorov, klonovania, výnimiek (exceptions) a ďalších.
 
 ### Funkcionálne programovanie
 
-PHP podporuje prvotriedne funkcie, čo znamená, že funkcie môžu byť priradené premennej. Oboje vstavané, ako aj
-užívateľsky definované funkcie môžu mať referenciu na premennú a byť vyvolané dynamicky. Funkcie môžu byt predané
+PHP podporuje funkcie prvej triedy, čo znamená, že funkcie môžu byť priradené premennej. Vstavané, ako aj
+užívateľsky definované funkcie môžu mať referenciu na premennú a byť zavolané dynamicky. Funkcie môžu byť predané
 ako argumenty iných funkcií (vlastnosť nazývaná _Funkcie vyššieho rádu_) a návratovou hodnotou funkcií môžu byť taktiež
 ďalšie funkcie.
 
-Rekurzia, možnosť funkcie volať samú seba, je podporovaná jazykom, ale väčšina PHP kódu je zameraná ma iterácie.
+Rekurzia, možnosť funkcie volať samú seba, je podporovaná jazykom, ale väčšina PHP kódu je zameraná na iterácie.
 
-Nové anonymné funkcie, spolu s podporou pre uzávery (closures), sú súčasťou od verzie PHP 5.3 (2009).
+Nové anonymné funkcie, spolu s podporou pre uzávery (closures), sú súčasťou PHP od verzie 5.3 (2009).
 
-Od verzie PHP 5.4 je pridaná schopnosť priradiť uzávery k rozsahu objektu (object scope) a taktiež vylepšená podpora
-pre volateľné funkcie (callables), takže môžu byť tieto zameniteľné za anonymné funkcie vo väčšine prípadov.
+Od verzie PHP 5.4 bola pridaná schopnosť priradiť uzávery k rozsahu objektu (object scope). Bola taktiež vylepšená
+podpora pre volateľné funkcie (callables), ktoré môžu byť zamenené za anonymné funkcie vo väčšine prípadov.
 
 * Pokračuje v čítaní o [funkcionálnom programované v PHP](/pages/Functional-Programming.html)
 * [Prečítajte si o anonymných funkciách][anonymous-functions]
@@ -41,7 +41,7 @@ pre volateľné funkcie (callables), takže môžu byť tieto zameniteľné za a
 
 ### Meta programovanie
 
-PHP podporuje rozličné formy meta programovania pomocou mechanizmou ako Reflection API a magických metód. Množstvo
+PHP podporuje rozličné formy meta programovania pomocou mechanizmov ako Reflection API a magických metód. Množstvo
 magických metód, ako napríklad `__get()`, `__set()`, `__clone()`, `__toString()`, `__invoke()`, atď. umožňuje
 programátorom zaháknuť sa do správania triedy. Vývojári v jazyku Ruby často hovoria o absencii metódy `method_missing`.
 Táto je ale dostupná ako `__call()` a `__callStatic()`.
