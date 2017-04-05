@@ -1,18 +1,20 @@
 ---
+title: Registrácia globálnych premenných
 isChild: true
 anchor:  register_globals
 ---
 
-## Register Globals {#register_globals_title}
+## Registrácia globálnych premenných {#register_globals_title}
 
-**NOTE:** As of PHP 5.4.0 the `register_globals` setting has been removed and can no longer be used. This is only
-included as a warning for anyone in the process of upgrading a legacy application.
+**POZNÁMKA:** Konfiguračné natavenie `register_globals` bolo v PHP verzií 5.4.0 odstránené a nemôže byť už naďalej
+použité. Tento odsek je zahrnutý len ako upozornenie pre niekoho, kto je v štádiu aktualizácie zastaranej aplikácie.
 
-When enabled, the `register_globals` configuration setting that makes several types of variables (including ones from
-`$_POST`, `$_GET` and `$_REQUEST`) available in the global scope of your application. This can easily lead to security
-issues as your application cannot effectively tell where the data is coming from.
+Pokiaľ je povolené, konfiguračné nastavenie `register_globals` vytvára niekoľko druhov premenných, ktoré sú prístupné
+v globálnom rozsahu vašej aplikácie. To zahŕňa aj premenné z `$_POST`, `$_GET` a `$_REQUEST`. Tieto vytvorené premenné
+môžu veľmi jednoducho viesť k bezpečnostným problémom, nakoľko vaša aplikácia nedokáže efektívne určiť zdroj dát.
 
-For example: `$_GET['foo']` would be available via `$foo`, which can override variables that have not been declared.
-If you are using PHP < 5.4.0 __make sure__ that `register_globals` is __off__.
+Príklad: S povoleným nastavením `register_globals` by bola hodnota `$_GET['foo']` dostupná cez premennú `$foo`.
+Táto premenná môže prepísať hodnoty v premenných, ktoré neboli deklarované. Ak používate verzie PHP menšie ako 5.4.0,
+**ubezpečte sa**, že hodnota nastavenia `register_globals` je **off**.
 
-* [Register_globals in the PHP manual](http://php.net/security.globals)
+* [Registrácia globálnych premenných v PHP manuáli](http://php.net/security.globals)
