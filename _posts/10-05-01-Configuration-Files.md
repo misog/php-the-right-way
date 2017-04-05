@@ -1,17 +1,17 @@
 ---
+title: Konfiguračné súbory
 isChild: true
-anchor:  configuration_files
+anchor: configuration_files
 ---
 
-## Configuration Files {#configuration_files_title}
+## Konfiguračné súbory {#configuration_files_title}
 
-When creating configuration files for your applications, best practices recommend that one of the following methods be
-followed:
+Ak pre vašu aplikáciu vytvárate konfiguračné súbory, snažte sa dodržiavať nasledujúce doporučené postupy:
 
-- It is recommended that you store your configuration information where it cannot be accessed directly and pulled in
-via the file system.
-- If you must store your configuration files in the document root, name the files with a `.php` extension. This ensures
-that, even if the script is accessed directly, it will not be output as plain text.
-- Information in configuration files should be protected accordingly, either through encryption or group/user file
-system permissions.
-- It is a good idea to ensure that you do not commit configuration files containing sensitive information eg passwords or API tokens to source control.
+* Konfiguračné súbory je doporučené ukladať na miestach, ktoré nie sú priamo prístupné a nahrané cez súborový systém. 
+* Ak musí byť konfiguračný súbor uložený v koreňovom adresári, potom pre súbor použite príponu `.php`. Toto zabezpečí,
+že výstupom nebude plain text, ani v prípade, keď bude skript pristupovaný priamo.
+* Informácie v konfiguračných súboroch by mali byť taktiež zabezpečené. Buď šifrovaním, alebo súborovými systémovými
+oprávneniami pre skupinu, alebo užívateľa.
+* Taktiež sa ubezpečte, že senzitívne informácie, ako napríklad heslá, alebo API tokeny, nie sú uložené vo vašom 
+ verziovaciom systéme.
