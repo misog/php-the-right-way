@@ -27,14 +27,14 @@ log_errors = On
 > [php.net](http://php.net/function.error-reporting)
 
 V PHP verzií 5.3.0 bola zavedená konštanta pre úroveň hlásenia chýb `E_STRICT`, ktorá nebola súčasťou `E_ALL`. Vo verzií
-5.4.0 sa však jej súčasťou stala. Čo to v praxi znamená? Pre zobrazenie všetkých možných chýb je vo verzií  5.3
+5.4.0 sa však stala jej súčasťou. Čo to v praxi znamená? Pre zobrazenie všetkých možných chýb je vo verzií 5.3
 potrebné použiť hodnotu `-1`, alebo `E_ALL | E_STRICT`.
 
 **Hlásenie všetkých možných v rôznych verziách PHP**
 
-* &lt; 5.3 `-1` or `E_ALL`
-* &nbsp; 5.3 `-1` or `E_ALL | E_STRICT`
-* &gt; 5.3 `-1` or `E_ALL`
+* &lt; 5.3 `-1`, alebo `E_ALL`
+* &nbsp; 5.3 `-1`, alebo `E_ALL | E_STRICT`
+* &gt; 5.3 `-1`, alebo `E_ALL`
 
 ### Produkčné prostredie
 
@@ -48,7 +48,7 @@ log_errors = On
 {% endhighlight %}
 
 S použitím týchto nastavení vo vašom produkčnom prostredí budú chyby naďalej zaznamenávané v súbore s chybovými
-hláškami vášho webového servera, ale nebudú zobrazené užívateľovi. Viac informácií o nastaveniach nájdete v PHP manuáli: 
+hláseniami vášho webového servera, ale nebudú zobrazené užívateľovi. Viac informácií o nastaveniach nájdete v PHP manuáli: 
 
 * [error_reporting](http://php.net/errorfunc.configuration#ini.error-reporting)
 * [display_errors](http://php.net/errorfunc.configuration#ini.display-errors)

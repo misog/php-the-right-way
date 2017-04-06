@@ -13,8 +13,8 @@ Riadne [_hašovanie_][3] hesla je veľmi dôležité ešte predtým, ako je hesl
 nezvratná operácia vykonávaná na hesle užívateľa. Táto operácia vytvorí reťazec s fixnou dĺžkou, ktorá sa nedá reálne
 zvrátiť. To znamená, že haš môže byť porovnávaný s ďalším hašom pre určenie rovnakého zdrojového reťazca, ale na
 základe hašu nie je možné určiť originálny reťazec. Ak heslá nie sú hašované, potom neoprávnený prístup k vašej databáze
-z tretej strany spôsobí kompromitáciu všetkých užívateľských účtov. Žiaľbohu niektorí užívatelia používajú
-rovnaké heslo pre ďalšie servisy, a preto je dôležité brať bezpečnosť vážne.
+z tretích strán spôsobí kompromitáciu všetkých užívateľských účtov. Niektorí užívatelia žiaľ používajú rovnaké heslo
+pre ďalšie servisy, a preto je dôležité brať bezpečnosť vážne.
 
 **Hašovanie hesiel pomocou `password_hash`**
 
@@ -39,8 +39,8 @@ if (password_verify('nespravne-heslo', $passwordHash)) {
 {% endhighlight %}  
 
 
-* [Naučte sa o `password_hash()`] [1]
-* [`password_compat` pre PHP >= 5.3.7 && < 5.5] [2]
+* [Naučte sa o funkcii `password_hash()`] [1]
+* [Knižnica `password_compat` pre PHP >= 5.3.7 && < 5.5] [2]
 * [Naučte sa o hašovaní v súvislosti s kryptografiu] [3]
 * [PHP `password_hash()` RFC] [4]
 

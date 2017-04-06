@@ -14,7 +14,7 @@ v globálnom rozsahu vašej aplikácie. To zahŕňa aj premenné z `$_POST`, `$_
 môžu veľmi jednoducho viesť k bezpečnostným problémom, nakoľko vaša aplikácia nedokáže efektívne určiť zdroj dát.
 
 Príklad: S povoleným nastavením `register_globals` by bola hodnota `$_GET['foo']` dostupná cez premennú `$foo`.
-Táto premenná môže prepísať hodnoty v premenných, ktoré neboli deklarované. Ak používate verzie PHP menšie ako 5.4.0,
+Táto premenná môže prepísať hodnoty v premenných, ktoré neboli deklarované. Ak používate PHP verzie menšie ako 5.4.0,
 **ubezpečte sa**, že hodnota nastavenia `register_globals` je **off**.
 
 * [Registrácia globálnych premenných v PHP manuáli](http://php.net/security.globals)

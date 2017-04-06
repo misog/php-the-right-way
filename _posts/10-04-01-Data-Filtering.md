@@ -15,43 +15,43 @@ Cudzie vstupné dáta môžu byť akékoľvek dáta z `$_GET` a `$_POST`, niekto
 cudzie dáta nie sú limitované len na dáta odoslané užívateľmi z formulárov. Cudzie dáta sú aj nahrané a stiahnuté súbory,
 hodnoty uložené v relácii, dáta zo súborov cookie, a taktiež dáta z webových služieb tretích strán.
 
-Dáta sa pokladajú za cudzie akonáhle môžu byť uložené, kombinované s inými dátami a následne pristupované.
-Zakaždým si dobre premyslite, či sú dáta, ktoré spracovávate, zobrazujete na výstupe, spájate s inými dátami,
-alebo inak využívate vo vašom kóde správne filtrované a dôveryhodné.
+Dáta sa pokladajú za cudzie akonáhle môžu byť uložené, kombinované s inými dátami a pristupované. Zakaždým si dobre
+premyslite, či sú dáta, ktoré spracovávate, zobrazujete na výstupe, spájate s inými dátami, alebo inak využívate
+vo vašom kóde správne filtrované a dôveryhodné.
 
 Dáta sa môžu podľa účelu _filtrovať_ rozdielne. Nefiltrované cudzie dáta zobrazené na výstupe HTML stránky môžu
 napríklad spustiť JavaScript, alebo pozmeniť HTML kód. Takýto druh útoku sa nazýva Cross-Site Scripting (XSS) a môže byť
-veľmi nebezpečný. Jeden spôsob ako predísť útokom typu XSS je sanitácia všetkých dát vygenerovaných užívateľmi pred
-zobrazením, je odstránenie HTML znakov pomocou funkcie `strip_tags()`. Ďalším spôsobom je zmena znakov so špeciálnym
-významom na príslušné HTML entity pomocou funkcií `htmlentities()`, alebo `htmlspecialchars()`.
+veľmi nebezpečný. Spôsobom, ako predísť útokom typu XSS, je odstránenie HTML znakov z užívateľmi vygenerovaných vstupov
+pred ich zobrazením. HTML znaky možno odstrániť pomocou funkcie `strip_tags()`. Ďalším spôsobom je zámena znakov
+so špeciálnym významom za príslušné HTML entity pomocou funkcií `htmlentities()`, alebo `htmlspecialchars()`.
 
-Ďalším príkladom je predávanie parametrov pre použitie v príkazovom riadku. I keď to obyčajne nie je najlepší nápad,
-pretože takýto prístup môže byť extrémne nebezpečný, pomocou vstavanej funkcie `escapeshellarg()` je tieto parametre
-možné sanitovať.
+Ďalším príkladom je predávanie parametrov pre použitie v príkazovom riadku. Použitie takýchto parametrov obyčajne nie je
+najlepší nápad, pretože takýto prístup môže byť extrémne nebezpečný. Pomocou vstavanej funkcie `escapeshellarg()`
+je však tieto parametre možné sanitovať.
 
-Posledným príkladom je prijatie cudzieho vstupu pre určenie súboru načítaného zo súborového systému. Tento prijatý
-vstup môže byť zneužitý tak, že útočník zmení názov súboru za cestu. S takto upraveným vstupom je možné načítať skryté,
-neverejné, alebo senzitívne súbory. Je preto potrebné z cesty k súboru odstrániť `"/"`, `"../"`, [null bajty][6],
-alebo iné znaky. Mnoho z týchto bezpečnostných chýb je už v novších verziách PHP opravených.
+Posledným príkladom je použitie cudzieho vstupu na určenie súboru pre načítanie zo súborového systému. Takto prijatý
+vstup môže byť zneužitý tak, že útočník zmení názov súboru za cestu. S upraveným vstupom je následne možné načítať
+skryté, neverejné, alebo senzitívne súbory. Z cesty k súboru je preto potrebné odstrániť `"/"`, `"../"`,
+[null bajty][6], alebo iné znaky. Mnoho z týchto bezpečnostných chýb je už v novších verziách PHP opravených.
 
-* [Naučte sa viac o filtrácií dát][1]
-* [Naučte sa o funkcií `filter_var`][4]
-* [Naučte sa o funkcií `filter_input`][5]
+* [Naučte sa viac o filtrácii dát][1]
+* [Naučte sa o funkcii `filter_var`][4]
+* [Naučte sa o funkcii `filter_input`][5]
 * [Naučte sa ako narábať s null bajty][6]
 
 ### Sanitácia
 
 Sanitácia odstraňuje nepovolené, alebo nebezpečné znaky z cudzieho vstupu.
 
-Príkladom je sanitácia cudzích vstupov pred vypísaním vstupu pomocou HTML, alebo uloženia vstupu pomocou "surového" SQL
+Príkladom je sanitácia cudzích vstupov pred ich vypísaním pomocou HTML, alebo uloženie vstupu pomocou "surového" SQL
 dopytu. Vstup ukladaný v databáze je napríklad možné sanitovať s použitím parametrizovaného dopytu pomocou
 [PDO](#databases), čím je možné predchádzať útokom typu SQL injection.
 
 Niekedy je žiadané, aby mal vstup povolené niektoré bezpečné HTML znaky. Jedná sa napríklad o formátovaný vstup,
-ktorý má byť formátovaný aj na výstupe HTML (príkladom je použitie WYSIWYG editora). Sanitácia takéhoto vstupu je
-však zložitá a mnoho projektov preto používa obmedzené formátovanie napríklad použitím s Markdown, alebo BBCode.
-Je však možné použiť knižnicu, ako napríklad [HTML Purifier][html-purifier], ktorá poskytuje zoznam povolených znakov,
-odstraňuje nebezpečný kód (XSS prevencia) a slúžia presne na tento účel.
+ktorý má byť formátovaný aj na výstupe HTML. Sanitácia takéhoto vstupu je však zložitá a mnoho projektov preto používa
+obmedzené formátovanie napríklad s použitím Markdown, alebo BBCode. Je však možné použiť knižnicu, ako napríklad
+[HTML Purifier][html-purifier], ktorá poskytuje zoznam povolených znakov, odstraňuje nebezpečný kód (XSS prevencia)
+a slúžia presne na tento účel.
 
 [Pozrite si sanitačné filtre][2]
 
