@@ -1,65 +1,76 @@
 ---
+title: Filtrácia dát
 isChild: true
 anchor:  data_filtering
 ---
 
-## Data Filtering {#data_filtering_title}
+## Filtrácia dát {#data_filtering_title}
 
-Never ever (ever) trust foreign input introduced to your PHP code. Always sanitize and validate foreign input before
-using it in code. The `filter_var()` and `filter_input()` functions can sanitize text and validate text formats (e.g.
-email addresses).
+Cudzím dátam vstupujúcim do vášho PHP kódu netreba vo všeobecnosti nikdy veriť. Pred použitím cudzích vstupných dát
+vo vašom kóde, dáta vždy sanitujte a validujte. Sanitáciu a validáciu textových formátov (napríklad emailov) môžete
+vykonať pomocou funkcií `filter_var()` a `filter_input()`.
 
-Foreign input can be anything: `$_GET` and `$_POST` form input data, some values in the `$_SERVER` superglobal, and the
-HTTP request body via `fopen('php://input', 'r')`. Remember, foreign input is not limited to form data submitted by the
-user. Uploaded and downloaded files, session values, cookie data, and data from third-party web services are foreign
-input, too.
+Cudzie vstupné dáta môžu byť akékoľvek dáta z `$_GET` a `$_POST`, niektoré hodnoty zo superglobálnej premennej
+`$_SERVER` a dáta z tela HTTP požiadavky nadobudnuté pomocou `fopen('php://input', 'r')`. Majte však na pamäti, že
+cudzie dáta nie sú limitované len na dáta odoslané užívateľmi z formulárov. Cudzie dáta sú aj nahrané a stiahnuté súbory,
+hodnoty uložené v relácii, dáta zo súborov cookie, a taktiež dáta z webových služieb tretích strán.
 
-While foreign data can be stored, combined, and accessed later, it is still foreign input. Every time you process,
-output, concatenate, or include data in your code, ask yourself if the data is filtered properly and can it be trusted.
+Dáta sa pokladajú za cudzie akonáhle môžu byť uložené, kombinované s inými dátami a pristupované. Zakaždým si dobre
+premyslite, či sú dáta, ktoré spracovávate, zobrazujete na výstupe, spájate s inými dátami, alebo inak využívate
+vo vašom kóde správne filtrované a dôveryhodné.
 
-Data may be _filtered_ differently based on its purpose. For example, when unfiltered foreign input is passed into HTML
-page output, it can execute HTML and JavaScript on your site! This is known as Cross-Site Scripting (XSS) and can be a
-very dangerous attack. One way to avoid XSS is to sanitize all user-generated data before outputting it to your page by
-removing HTML tags with the `strip_tags()` function or escaping characters with special meaning into their respective
-HTML entities with the `htmlentities()` or `htmlspecialchars()` functions.
+Dáta sa môžu podľa účelu _filtrovať_ rozdielne. Nefiltrované cudzie dáta zobrazené na výstupe HTML stránky môžu
+napríklad spustiť JavaScript, alebo pozmeniť HTML kód. Takýto druh útoku sa nazýva Cross-Site Scripting (XSS) a môže byť
+veľmi nebezpečný. Spôsobom, ako predísť útokom typu XSS, je odstránenie HTML znakov z užívateľmi vygenerovaných vstupov
+pred ich zobrazením. HTML znaky možno odstrániť pomocou funkcie `strip_tags()`. Ďalším spôsobom je zámena znakov
+so špeciálnym významom za príslušné HTML entity pomocou funkcií `htmlentities()`, alebo `htmlspecialchars()`.
 
-Another example is passing options to be executed on the command line. This can be extremely dangerous (and is usually
-a bad idea), but you can use the built-in `escapeshellarg()` function to sanitize the executed command's arguments.
+Ďalším príkladom je predávanie parametrov pre použitie v príkazovom riadku. Použitie takýchto parametrov obyčajne nie je
+najlepší nápad, pretože takýto prístup môže byť extrémne nebezpečný. Pomocou vstavanej funkcie `escapeshellarg()`
+je však tieto parametre možné sanitovať.
 
-One last example is accepting foreign input to determine a file to load from the filesystem. This can be exploited by
-changing the filename to a file path. You need to remove `"/"`, `"../"`, [null bytes][6], or other characters from the
-file path so it can't load hidden, non-public, or sensitive files.
+Posledným príkladom je použitie cudzieho vstupu na určenie súboru pre načítanie zo súborového systému. Takto prijatý
+vstup môže byť zneužitý tak, že útočník zmení názov súboru za cestu. S upraveným vstupom je následne možné načítať
+skryté, neverejné, alebo senzitívne súbory. Z cesty k súboru je preto potrebné odstrániť `"/"`, `"../"`,
+[null bajty][6], alebo iné znaky. Mnoho z týchto bezpečnostných chýb je už v novších verziách PHP opravených.
 
-* [Learn about data filtering][1]
-* [Learn about `filter_var`][4]
-* [Learn about `filter_input`][5]
-* [Learn about handling null bytes][6]
+* [Naučte sa viac o filtrácii dát][1]
+* [Naučte sa o funkcii `filter_var`][4]
+* [Naučte sa o funkcii `filter_input`][5]
+* [Naučte sa ako narábať s null bajty][6]
 
-### Sanitization
+### Sanitácia
 
-Sanitization removes (or escapes) illegal or unsafe characters from foreign input.
+Sanitácia odstraňuje nepovolené, alebo nebezpečné znaky z cudzieho vstupu.
 
-For example, you should sanitize foreign input before including the input in HTML or inserting it into a raw SQL query.
-When you use bound parameters with [PDO](#databases), it will sanitize the input for you.
+Príkladom je sanitácia cudzích vstupov pred ich vypísaním pomocou HTML, alebo uloženie vstupu pomocou "surového" SQL
+dopytu. Vstup ukladaný v databáze je napríklad možné sanitovať s použitím parametrizovaného dopytu pomocou
+[PDO](#databases), čím je možné predchádzať útokom typu SQL injection.
 
-Sometimes it is required to allow some safe HTML tags in the input when including it in the HTML page. This is very
-hard to do and many avoid it by using other more restricted formatting like Markdown or BBCode, although whitelisting
-libraries like [HTML Purifier][html-purifier] exists for this reason.
+Niekedy je žiadané, aby mal vstup povolené niektoré bezpečné HTML znaky. Jedná sa napríklad o formátovaný vstup,
+ktorý má byť formátovaný aj na výstupe HTML. Sanitácia takéhoto vstupu je však zložitá a mnoho projektov preto používa
+obmedzené formátovanie napríklad s použitím Markdown, alebo BBCode. Je však možné použiť knižnicu, ako napríklad
+[HTML Purifier][html-purifier], ktorá poskytuje zoznam povolených znakov, odstraňuje nebezpečný kód (XSS prevencia)
+a slúžia presne na tento účel.
 
-[See Sanitization Filters][2]
+[Pozrite si sanitačné filtre][2]
 
-### Unserialization
+### Deserializácia
 
-It is dangerous to `unserialize()` data from users or other untrusted sources.  Doing so can allow malicious users to instantiate objects (with user-defined properties) whose destructors will be executed, **even if the objects themselves aren't used**.  You should therefore avoid unserializing untrusted data.
+Užívateľské dáta, alebo dáta z iných nedôveryhodných zdrojov je pomocou funkcie `unserialize()` nebezpečné
+deserializovať. Podpora takéhoto druhu vstupu umožňuje zlomyseľným užívateľom vytvoriť inštanciu objektu 
+(s užívateľsky definovanými parametrami), ktorého deštruktor bude spustený, **i keď samotný objekt použitý nebude**.
+Mali by ste sa preto, pokiaľ možno, vyhnúť použitia deserializovaných dát z nedôveryhodných zdrojov.
 
-If you absolutely must unserialize data from untrusted sources, use PHP 7's [`allowed_classes`][unserialize] option to restrict which object types are allowed to be unserialized.
+Ak sa deserializácii neviete vyhnúť a dáta z nedôveryhodných zdrojov musíte použiť, potom pre obmedzenie typu objektov,
+ktoré môže funkcia deserializovať, použite nastavenie [`allowed_classes`][unserialize] (>= PHP 7).
 
-### Validation
+### Validácia
 
-Validation ensures that foreign input is what you expect. For example, you may want to validate an email address, a
-phone number, or age when processing a registration submission.
+Validácia zabezpečuje, aby cudzie vstupy mali taký formát, aký aplikácia požaduje. Príkladom môže byť validácia
+emailovej adresy, telefónneho čísla, alebo veku pri spracovaní registračného formulára.
 
-[See Validation Filters][3]
+[Pozrite si validačné filtre][3]
 
 
 [1]: http://php.net/book.filter

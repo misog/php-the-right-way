@@ -1,46 +1,47 @@
 ---
+title: Hašovanie hesiel
 isChild: true
-anchor:  password_hashing
+anchor: password_hashing
 ---
 
-## Password Hashing {#password_hashing_title}
+## Hašovanie hesiel {#password_hashing_title}
 
-Eventually everyone builds a PHP application that relies on user login. Usernames and passwords are stored in a
-database and later used to authenticate users upon login.
+V konečnom dôsledku všetci vytvárajú PHP aplikácie, ktoré sú založené na prihlasovaní užívateľov. Užívateľské mená
+a heslá sú uložené v databáze a následne používané na overovanie užívateľov počas prihlasovania.
 
-It is important that you properly [_hash_][3] passwords before storing them. Password hashing is an irreversible, one
-way function performed against the user's password. This produces a fixed-length string that cannot be feasibly
-reversed. This means you can compare a hash against another to determine if they both came from the same source string,
-but you cannot determine the original string. If passwords are not hashed and your database is accessed by an
-unauthorized third-party, all user accounts are now compromised. Some users may (unfortunately) use the same password
-for other services. Therefore, it is important to take security seriously.
+Riadne [_hašovanie_][3] hesla je veľmi dôležité ešte predtým, ako je heslo uložené. Hašovanie hesla je jednosmerná
+nezvratná operácia vykonávaná na hesle užívateľa. Táto operácia vytvorí reťazec s fixnou dĺžkou, ktorá sa nedá reálne
+zvrátiť. To znamená, že haš môže byť porovnávaný s ďalším hašom pre určenie rovnakého zdrojového reťazca, ale na
+základe hašu nie je možné určiť originálny reťazec. Ak heslá nie sú hašované, potom neoprávnený prístup k vašej databáze
+z tretích strán spôsobí kompromitáciu všetkých užívateľských účtov. Niektorí užívatelia žiaľ používajú rovnaké heslo
+pre ďalšie servisy, a preto je dôležité brať bezpečnosť vážne.
 
-**Hashing passwords with `password_hash`**
+**Hašovanie hesiel pomocou `password_hash`**
 
-In PHP 5.5 `password_hash()` was introduced. At this time it is using BCrypt, the strongest algorithm currently
-supported by PHP. It will be updated in the future to support more algorithms as needed though. The `password_compat`
-library was created to provide forward compatibility for PHP >= 5.3.7.
+Vo verzií PHP 5.5 bola zavedená funkcia `password_hash()`, ktorá momentálne používa BCrypt, čo je v súčastnosti
+najsilnejší algoritmus podporovaný v PHP. V budúcnosti bude podľa potreby zavedená podpora pre ďalšie algoritmy.
+Pre spätnú kompatibilitu vo verziách PHP >= 5.3.7 bola vytvorená knižnica `password_compat`.
 
-Below we hash a string, and then check the hash against a new string. Because our two source strings are different
-('secret-password' vs. 'bad-password') this login will fail.
+V príklade overenie hesla nižšie, je reťazec hašovaný a následne porovnávaný s novým reťazcom. Pretože
+oba pôvodné reťazce sú rozdielne ('tajne-heslo' a 'nespravne-heslo'), prihlásenie v tomto prípade nebude úspešné.
 
 {% highlight php %}
 <?php
 require 'password.php';
 
-$passwordHash = password_hash('secret-password', PASSWORD_DEFAULT);
+$passwordHash = password_hash('tajne-heslo', PASSWORD_DEFAULT);
 
-if (password_verify('bad-password', $passwordHash)) {
-    // Correct Password
+if (password_verify('nespravne-heslo', $passwordHash)) {
+    // Správne heslo
 } else {
-    // Wrong password
+    // Nesprávne heslo
 }
 {% endhighlight %}  
 
 
-* [Learn about `password_hash()`] [1]
-* [`password_compat` for PHP >= 5.3.7 && < 5.5] [2]
-* [Learn about hashing in regards to cryptography] [3]
+* [Naučte sa o funkcii `password_hash()`] [1]
+* [Knižnica `password_compat` pre PHP >= 5.3.7 && < 5.5] [2]
+* [Naučte sa o hašovaní v súvislosti s kryptografiu] [3]
 * [PHP `password_hash()` RFC] [4]
 
 
