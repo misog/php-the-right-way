@@ -1,47 +1,48 @@
 ---
 layout: page
-title:  The Basics
+title: Základy
 sitemap: true
 ---
 
-# The Basics
+# Základy
 
-## Comparison operators
+## Relačné operátory
 
-Comparison operators are an often overlooked aspect of PHP, which can lead to many unexpected outcomes. One such
-problem stems from strict comparisons (the comparison of booleans as integers).
+Relačné operátory sú často prehliadaným aspektom PHP, čo môže viesť k mnohým nečakaným výsledkom. Jeden z takýchto
+problémov pramení v použití striktného porovnávania (porovnávanie boolean ako integer). 
 
 {% highlight php %}
 <?php
-$a = 5;   // 5 as an integer
+$a = 5;                  // číslo 5 ako integer 
 
-var_dump($a == 5);       // compare value; return true
-var_dump($a == '5');     // compare value (ignore type); return true
-var_dump($a === 5);      // compare type/value (integer vs. integer); return true
-var_dump($a === '5');    // compare type/value (integer vs. string); return false
+var_dump($a == 5);       // porovnanie hodnôt; návratová hodnota true
+var_dump($a == '5');     // porovnanie hodnôt (ignorovanie typov); návratová hodnota true
+var_dump($a === 5);      // porovnanie typov a hodnôt (integer vs. integer); návratová hodnota true
+var_dump($a === '5');    // porovnanie typov a hodnôt (integer vs. string); návratová hodnota false
 
-//Equality comparisons
-if (strpos('testing', 'test')) {    // 'test' is found at position 0, which is interpreted as the boolean 'false'
-    // code...
+// Porovnávanie rovnosti
+if (strpos('testovanie', 'test')) {  // 'test' sa nachádza na pozícii 0, ktorá je interpretovaná ako hodnota boolean 'false'
+    // kód...
 }
 
-// vs. strict comparisons
-if (strpos('testing', 'test') !== false) {    // true, as strict comparison was made (0 !== false)
-    // code...
+// ... oproti striktnému porovnávaniu
+if (strpos('testovanie', 'test') !== false) {  //  na základe striktného porovnávania (0 !== false) je výsledok 'true'
+    // kód...
 }
 {% endhighlight %}
 
-* [Comparison operators](http://php.net/language.operators.comparison)
-* [Comparison table](http://php.net/types.comparisons)
-* [Comparison cheatsheet](http://phpcheatsheets.com/index.php?page=compare)
+* [Relačné operátory](http://php.net/language.operators.comparison)
+* [Tabuľka pre porovnanie typov](http://php.net/types.comparisons)
+* [Ťahák pre porovnanie typov](http://phpcheatsheets.com/index.php?page=compare)
 
-## Conditional statements
+## Príkazy vetvenia
 
-### If statements
+### Príkaz if
 
-While using 'if/else' statements within a function or class method, there is a common misconception that 'else' must be used
-in conjunction to declare potential outcomes. However if the outcome is to define the return value, 'else' is not
-necessary as 'return' will end the function, causing 'else' to become moot.
+Pri použití príkazov 'if/else' vo funkcií, alebo metóde triedy je bežnou mylnou predstavou, že pre deklaráciu možných
+následkov musí byť v spojení s 'if' použitý aj príkaz 'else'. Ak je ale požadovaným výsledkom návratová hodnota,
+potom príkaz 'else' nie je potrebný. Príkaz 'return' v tomto prípade ukončí funkciu, čím sa použitie 'else' stáva
+diskutabilné.
 
 {% highlight php %}
 <?php
@@ -54,17 +55,17 @@ function test($a)
     }
 }
 
-// vs.
+// oproti použitiu
 
 function test($a)
 {
     if ($a) {
         return true;
     }
-    return false;    // else is not necessary
+    return false;    // 'else' nie je potrebné
 }
 
-// or even shorter:
+// prípadne ešte kratšieho zápisu
 
 function test($a)
 {
@@ -73,46 +74,47 @@ function test($a)
 
 {% endhighlight %}
 
-* [If statements](http://php.net/control-structures.if)
+* [Príkaz if v PHP manuále](http://php.net/control-structures.if)
 
-### Switch statements
+### Príkaz switch
 
-Switch statements are a great way to avoid typing endless if's and elseif's, but there are a few things to be aware of:
+Použitie príkazu switch je výborným spôsobom ako predísť nekonečným vetveniam, ku ktorým môže dôjsť v prípade
+použitia 'if' a 'elseif'. Pri použití je ale treba dávať pozor na niekoľko vecí:
 
-- Switch statements only compare values, and not the type (equivalent to '==')
-- They Iterate case by case until a match is found. If no match is found, then the default is used (if defined)
-- Without a 'break', they will continue to implement each case until reaching a break/return
-- Within a function, using 'return' alleviates the need for 'break' as it ends the function
+- príkaz switch porovnáva hodnoty, ale neporovnáva typ (ekvivalent k '==')
+- príkaz iteruje cez všetky vetvy až pokiaľ nenájde zhodu. Ak sa zhoda nenájde, potom použije vetvu default (ak je definovaná)
+- bez použitia 'break' vo vetve, príkaz pokračuje v iterácii až pokiaľ na break, alebo return nenarazí 
+- v prípade použitia príkazu 'return' je ďalšie použitie 'break' zbytočné, nakoľko return funkciu ukončí
 
 {% highlight php %}
 <?php
-$answer = test(2);    // the code from both 'case 2' and 'case 3' will be implemented
+$answer = test(2);    // vykoná kód vo vetvách 'case 2' aj 'case 3'
 
 function test($a)
 {
     switch ($a) {
         case 1:
-            // code...
-            break;             // break is used to end the switch statement
+            // kód...
+            break;            // príkaz break je určený pre ukončenie podmienky príkazu switch
         case 2:
-            // code...         // with no break, comparison will continue to 'case 3'
+            // kód...         // bez použitia break bude porovnávanie pokračovať ďalej vo vetve 'case 3'
         case 3:
-            // code...
-            return $result;    // within a function, 'return' will end the function
+            // kód...
+            return $result;   // 'return' ukončí beh funkcie
         default:
-            // code...
+            // kód...
             return $error;
     }
 }
 {% endhighlight %}
 
-* [Switch statements](http://php.net/control-structures.switch)
+* [Príkaz switch v PHP manuále](http://php.net/control-structures.switch)
 * [PHP switch](http://phpswitch.com/)
 
-## Global namespace
+## Globálne menné priestory
 
-When using namespaces, you may find that internal functions are hidden by functions you wrote. To fix this, refer to
-the global function by using a backslash before the function name.
+Pri použití menných priestorov, sa vám môže stať, že interné funkcie budú skryté za funkciami, ktoré ste napísali vy.
+Pre použitie takýchto globálnych funkcií, použite spätné lomítko pred názvom funkcie.
 
 {% highlight php %}
 <?php
@@ -120,23 +122,23 @@ namespace phptherightway;
 
 function fopen()
 {
-    $file = \fopen();    // Our function name is the same as an internal function.
-                         // Execute the function from the global space by adding '\'.
+    $file = \fopen();    // Názov vašej funkcie je rovnaký, ako názov internej funkcie.
+                         // Vyvolá funkciu z globálneho menného priestory pomocou pridania '\'. 
 }
 
 function array()
 {
-    $iterator = new \ArrayIterator();    // ArrayIterator is an internal class. Using its name without a backslash
-                                         // will attempt to resolve it within your namespace.
+    $iterator = new \ArrayIterator();    // ArrayIterator je interná trieda. Pri použití tejto triedy bez spätného lomítka
+                                         // sa ju PHP najprv pokúsi nájsť v rámci vášho menného priestoru.
 }
 {% endhighlight %}
 
-* [Global space](http://php.net/language.namespaces.global)
-* [Global rules](http://php.net/userlandnaming.rules)
+* [Globálne menné priestory](http://php.net/language.namespaces.global)
+* [Globálne pravidlá](http://php.net/userlandnaming.rules)
 
-## Strings
+## Reťazce
 
-### Concatenation
+### Spájanie reťazcov
 
 - If your line extends beyond the recommended line length (120 characters), consider concatenating your line
 - For readability it is best to use concatenation operators over concatenating assignment operators
@@ -145,14 +147,14 @@ function array()
 
 {% highlight php %}
 <?php
-$a  = 'Multi-line example';    // concatenating assignment operator (.=)
+$a  = 'Multi-line example';    // zreťazujúci operátor priradenia (.=)
 $a .= "\n";
 $a .= 'of what not to do';
 
 // vs
 
-$a = 'Multi-line example'      // concatenation operator (.)
-    . "\n"                     // indenting new lines
+$a = 'Multi-line example'      // operátor zreťazenia (.)
+    . "\n"                     // odsadenie nových riadkov
     . 'of what to do';
 {% endhighlight %}
 
