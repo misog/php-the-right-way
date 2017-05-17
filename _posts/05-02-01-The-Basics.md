@@ -1,13 +1,13 @@
 ---
+title: Základy
 isChild: true
-anchor:  the_basics
+anchor: the_basics
 ---
 
-## The Basics {#the_basics_title}
+## Základy {#the_basics_title}
 
-PHP is a vast language that allows coders of all levels the ability to produce code not only quickly, but efficiently.
-However while advancing through the language, we often forget the basics that we first learnt (or overlooked) in favor
-of short cuts and/or bad habits. To help combat this common issue, this section is aimed at reminding coders of the
-basic coding practices within PHP.
+PHP je rozsiahly jazyk, ktorý umožňuje programátorom všetkých úrovní písať kód nie len rýchlo, ale aj efektívne.
+Pri napredovaní v jazyku ale často zabúdame, alebo prehliadame základy, ktoré sme sa naučili ako prvé, na úkor skratiek,
+a/alebo zlých zvykov. Tento odsek je zameraný na pripomenutie základných praktík v písaní kódu v rámci PHP.
 
-* Continue reading on [The Basics](/pages/The-Basics.html)
+* Pokračujte v čítaní na tejto stránke [Základy](/pages/The-Basics.html)
