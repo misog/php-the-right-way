@@ -239,22 +239,22 @@ echo "I drank some juice made of {$juice[1]}s";   // $juice[1] bude parsované
 
 * [Dvojité úvodzovky](http://php.net/language.types.string#language.types.string.syntax.double)
 
-#### Nowdoc syntax
+#### Syntax Nowdoc
 
-Nowdoc syntax was introduced in 5.3 and internally behaves the same way as single quotes except it is suited toward the
-use of multi-line strings without the need for concatenating.
+Syntax Nowdoc bola zavedená v PHP 5.3 a interne sa správa rovnako ako jednoduché úvodzovky. Okrem toho je vhodná
+pre použitie v mnohoriadkových reťazcoch bez potreby spájania.
 
 {% highlight php %}
 <?php
-$str = <<<'EOD'             // initialized by <<<
+$str = <<<'EOD'             // inicializované s <<<
 Example of string
 spanning multiple lines
 using nowdoc syntax.
 $a does not parse.
-EOD;                        // closing 'EOD' must be on it's own line, and to the left most point
+EOD;                        // ukončenie 'EOD' musí byť na samostatnom riadku bez odsadenia
 
 /**
- * Output:
+ * Výstup:
  *
  * Example of string
  * spanning multiple lines
@@ -263,26 +263,26 @@ EOD;                        // closing 'EOD' must be on it's own line, and to th
  */
 {% endhighlight %}
 
-* [Nowdoc syntax](http://php.net/language.types.string#language.types.string.syntax.nowdoc)
+* [Syntax Nowdoc](http://php.net/language.types.string#language.types.string.syntax.nowdoc)
 
-#### Heredoc syntax
+#### Syntax Heredoc
 
-Heredoc syntax internally behaves the same way as double quotes except it is suited toward the use of multi-line
-strings without the need for concatenating.
+Syntax Heredoc sa interne správa rovnako ako dvojité úvodzovky. Okrem toho je vhodná pre použitie
+v mnohoriadkových reťazcoch bez potreby spájania.
 
 {% highlight php %}
 <?php
 $a = 'Variables';
 
-$str = <<<EOD               // initialized by <<<
+$str = <<<EOD               // inicializované s <<<
 Example of string
 spanning multiple lines
 using heredoc syntax.
 $a are parsed.
-EOD;                        // closing 'EOD' must be on it's own line, and to the left most point
+EOD;                        // ukončenie 'EOD' musí byť na samostatnom riadku bez odsadenia
 
 /**
- * Output:
+ * Výstup:
  *
  * Example of string
  * spanning multiple lines
@@ -291,31 +291,31 @@ EOD;                        // closing 'EOD' must be on it's own line, and to th
  */
 {% endhighlight %}
 
-* [Heredoc syntax](http://php.net/language.types.string#language.types.string.syntax.heredoc)
+* [Syntax Heredoc](http://php.net/language.types.string#language.types.string.syntax.heredoc)
 
-### Which is quicker?
+### Ktorá syntax je rýchlejšia?
 
-There is a myth floating around that single quote strings are fractionally quicker than double quote strings. This is
-fundamentally not true.
+Okolo reťazcov v jednoduchých úvodzovkách je mýtus že sú oveľa rýchlejšie ako tie v dvojitých. Toto v podstate
+nie je pravda.
 
-If you are defining a single string and not trying to concatenate values or anything complicated, then either a single
-or double quoted string will be entirely identical. Neither are quicker.
+Ak zadefinujete jeden reťazec a nesnažíte sa spájať hodnoty, alebo niečo iné komplikované, potom oba reťazce
+budú identické. Ani jeden z nich nie je rýchlejší.
 
-If you are concatenating multiple strings of any type, or interpolate values into a double quoted string, then the
-results can vary. If you are working with a small number of values, concatenation is minutely faster. With a lot of
-values, interpolating is minutely faster.
+Ak spájate niekoľko reťazcov akéhokoľvek typu, alebo interpolujete hodnoty v reťazcoch v dvojitých úvodzovkách, potom
+sa hodnoty môžu líšiť. Ak pracujete s malým množstvom hodnôt, potom je zreťazenie rýchlejšie. Pre väčší počet
+hodnôt je naopak rýchlejšia interpolácia.
 
-Regardless of what you are doing with strings, none of the types will ever have any noticeable impact on your
-application. Trying to rewrite code to use one or the other is always an exercise in futility, so avoid this micro-
-optimization unless you really understand the meaning and impact of the differences.
+Bez ohľadu na to, čo s reťazcami robíte, ani jeden z typov nebude mať nikdy na vašu aplikáciu výrazný vplyv. Snaha
+o prepísanie kódu pre použitie jedného, alebo druhého je zbytočná práca, takže sa snažte vyhnúť tejto mikrooptimalizácii
+pokiaľ naozaj nechápete význam a vplyv medzi rozdielmi.
 
 * [Disproving the Single Quotes Performance Myth](http://nikic.github.io/2012/01/09/Disproving-the-Single-Quotes-Performance-Myth.html)
 
 
-## Ternary operators
+## Ternárne operátory
 
-Ternary operators are a great way to condense code, but are often used in excess. While ternary operators can be
-stacked/nested, it is advised to use one per line for readability.
+Ternárne operátory sú výbornou cestou, ako zhustiť kód. Často sú ale používané prebytočne. Pokiaľ môžu byť ternárne
+operátory vetvené/vnorené, odporúča sa pre lepšiu čitateľnosť používať jeden na riadok.
 
 {% highlight php %}
 <?php
@@ -323,95 +323,94 @@ $a = 5;
 echo ($a == 5) ? 'yay' : 'nay';
 {% endhighlight %}
 
-In comparison, here is an example that sacrifices all forms of readability for the sake of reducing the line count.
+Pre porovnanie je tu príklad, ktorý na úkor redukcie príkazu na jeden riadok obetuje všetky formy čitateľnosti.
 
 {% highlight php %}
 <?php
-echo ($a) ? ($a == 5) ? 'yay' : 'nay' : ($b == 10) ? 'excessive' : ':(';    // excess nesting, sacrificing readability
+echo ($a) ? ($a == 5) ? 'yay' : 'nay' : ($b == 10) ? 'excessive' : ':(';    // nadmerné vetvenie, obetovanie čitateľnosti
 {% endhighlight %}
 
-To 'return' a value with ternary operators use the correct syntax.
+Pre návratovú hodnotu s ternárnymi operátormi použite správnu syntax. 
 
 {% highlight php %}
 <?php
 $a = 5;
-echo ($a == 5) ? return true : return false;    // this example will output an error
+echo ($a == 5) ? return true : return false;    // tento príklad vráti chybu
 
 // vs
 
 $a = 5;
-return ($a == 5) ? 'yay' : 'nope';    // this example will return 'yay'
+return ($a == 5) ? 'yay' : 'nope';    // návratová hodnota z tohto príkladu bude 'yay'
 
 {% endhighlight %}
 
-It should be noted that you do not need to use a ternary operator for returning a boolean value. An example of this
-would be.
+Treba poznamenať, že pre návratovú hodnoty typu bool nie je potrebné použiť ternárny operátor. Príklad:
 
 {% highlight php %}
 <?php
 $a = 3;
-return ($a == 3) ? true : false; // Will return true or false if $a == 3
+return ($a == 3) ? true : false; // návratová hodnota bude true ak $a == 3, false v ostatných prípadoch
 
 // vs
 
 $a = 3;
-return $a == 3; // Will return true or false if $a == 3
+return $a == 3; // návratová hodnota bude true ak $a == 3, false v ostatných prípadoch
 
 {% endhighlight %}
 
-This can also be said for all operations(===, !==, !=, == etc).
+Toto platí pre všetky operátory (===, !==, !=, == etc).
 
-#### Utilising brackets with ternary operators for form and function
+#### Použitie zátvoriek s ternárnymi operátormi pre formu a funkciu
 
-When utilising a ternary operator, brackets can play their part to improve code readability and also to include unions
-within blocks of statements. An example of when there is no requirement to use bracketing is:
+Pri používaní ternárnych operátorov môžu zátvorky zvýšiť čitateľnosť kódu. Príklad, pri ktorom nie je potreba
+použiť zátvorky:
 
 {% highlight php %}
 <?php
 $a = 3;
-return ($a == 3) ? "yay" : "nope"; // return yay or nope if $a == 3
+return ($a == 3) ? "yay" : "nope"; // návratová hodnota bude 'yay' ak $a == 3, 'nope' v ostatných prípadoch
 
 // vs
 
 $a = 3;
-return $a == 3 ? "yay" : "nope"; // return yay or nope if $a == 3
+return $a == 3 ? "yay" : "nope"; // návratová hodnota bude 'yay' ak $a == 3, 'nope' v ostatných prípadoch
 {% endhighlight %}
 
-Bracketing also affords us the capability of creating unions within a statement block where the block will be checked
-as a whole. Such as this example below which will return true if both ($a == 3 and $b == 4) are true and $c == 5 is
-also true.
+Použitie zátvoriek taktiež poskytuje možnosť vytvorenia zložených podmienok v rámci výrazu, ktoré budú
+vyhodnotené ako celok. Nasledujúci príklad bude mať návratovú hodnotu true ak obe podmienky `($a == 3 AND $b == 4)`
+a súčasne `$c == 5` sú vyhodnotené ako true.
 
 {% highlight php %}
 <?php
 return ($a == 3 && $b == 4) && $c == 5;
 {% endhighlight %}
 
-Another example is the snippet below which will return true if ($a != 3 AND $b != 4) OR $c == 5.
+Ďalším príkladom je nasledujúci útržok kódu, ktorý má návratovú hodnotu true ak `($a != 3 AND $b != 4) OR $c == 5`.
 
 {% highlight php %}
 <?php
 return ($a != 3 && $b != 4) || $c == 5;
 {% endhighlight %}
 
-Since PHP 5.3, it is possible to leave out the middle part of the ternary operator.
-Expression "expr1 ?: expr3" returns expr1 if expr1 evaluates to TRUE, and expr3 otherwise.
+Od PHP verzie 5.3 je možné vynechať strednú časť ternárneho operátora.
+Výraz "`expr1 ?: expr3`" vráti `expr1` ak výraz `expr1` je vyhodnotený ako TRUE, inak vráti hodnotu expr3.
 
-* [Ternary operators](http://php.net/language.operators.comparison)
+* [Ternárne operátory](http://php.net/language.operators.comparison)
 
-## Variable declarations
+## Deklarácia premenných
 
-At times, coders attempt to make their code "cleaner" by declaring predefined variables with a different name. What
-this does in reality is to double the memory consumption of said script. For the example below, let us say an example
-string of text contains 1MB worth of data, by copying the variable you've increased the scripts execution to 2MB.
+Kedysi sa programátori pokúšali deklaráciou preddefinovaných premenných s rozdielnymi menami spraviť
+ich kód "čistejší". Čo toto v skutočnosti spôsobuje je dvojnásobné množstvo pamäte, ktorú program používa.
+Povedzme, že v nasledujúcom príklade obsahuje reťazec 1MB dát. Vytvorením premennej vzrastie potreba pamäte na 2MB.
 
 {% highlight php %}
 <?php
-$about = 'A very long string of text';    // uses 2MB memory
+$about = 'A very long string of text';    // používa 2MB pamäte
 echo $about;
 
 // vs
 
-echo 'A very long string of text';        // uses 1MB memory
+echo 'A very long string of text';        // používa 1MB pamäte
 {% endhighlight %}
 
 * [Performance tips](http://web.archive.org/web/20140625191431/https://developers.google.com/speed/articles/optimizing-php)
