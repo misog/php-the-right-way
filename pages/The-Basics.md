@@ -140,9 +140,9 @@ function array()
 
 ### Spájanie reťazcov
 
-- If your line extends beyond the recommended line length (120 characters), consider concatenating your line
-- For readability it is best to use concatenation operators over concatenating assignment operators
-- While within the original scope of the variable, indent when concatenation uses a new line
+- ak dĺžka riadku presiahne doporučenú dĺžku (120 znakov), zvážte spájanie riadkov
+- pre lepšiu čitateľnosť je lepšie použiť operátor zreťazenia než zreťazujúci operátor priradenia
+- ak zreťazujete riadky v pôvodnom rozsahu premennej, potom nové zreťazené riadky zarovnajte
 
 
 {% highlight php %}
@@ -158,54 +158,55 @@ $a = 'Multi-line example'      // operátor zreťazenia (.)
     . 'of what to do';
 {% endhighlight %}
 
-* [String Operators](http://php.net/language.operators.string)
+* [Reťazcové operátory](http://php.net/language.operators.string)
 
-### String types
+### Druhy reťazcov
 
-Strings are a series of characters, which should sound fairly simple. That said, there are a few different types of
-strings and they offer slightly different syntax, with slightly different behaviors.
+Reťazce sú sériou znakov, čo by malo znieť pomerne jednoducho. Je niekoľko druhov reťazcov. Každý druh má mierne
+odlišnú syntax a mierne odlišné správanie. 
 
-#### Single quotes
+#### Jednoduché úvodzovky
 
-Single quotes are used to denote a "literal string". Literal strings do not attempt to parse special characters or
-variables.
+Jednoduché úvodzovky slúžia na označovanie "doslovných reťazcov". Doslovné reťazce sa nepokúšajú parsovať
+špeciálne znaky, alebo premenné.
 
-If using single quotes, you could enter a variable name into a string like so: `'some $thing'`, and you would see the
-exact output of `some $thing`. If using double quotes, that would try to evaluate the `$thing` variable name and show
-errors if no variable was found.
+Ak použijete jednoduché úvodzovky, názov premennej môžete vložiť do reťazca nasledovne: `'nejaká $vec'`. Na výstupe
+následne uvidíte presne výstup `nejaká $vec`. Pri použití dvojitých úvodzoviek sa PHP pokúsi vyhodnotiť premennú `$vec`
+a ak premenná nebola nájdená, potom zobrazí chyby.
 
 
 {% highlight php %}
 <?php
-echo 'This is my string, look at how pretty it is.';    // no need to parse a simple string
+echo 'Toto je môj reťazec. Pozri aký je krásny.';    // jednoduchý reťazec nie je nutné parsovať
 
 /**
- * Output:
+ * Výstup:
  *
- * This is my string, look at how pretty it is.
+ * Toto je môj reťazec. Pozri aký je krásny.
  */
 {% endhighlight %}
 
-* [Single quote](http://php.net/language.types.string#language.types.string.syntax.single)
+* [Jednoduché úvodzovky](http://php.net/language.types.string#language.types.string.syntax.single)
 
-#### Double quotes
+#### Dvojité úvodzovky
 
-Double quotes are the Swiss Army Knife of strings. They will not only parse variables as mentioned above, but all sorts
-of special characters, like `\n` for newline, `\t` for a tab, etc.
+Dvojité úvodzovky sú švajčiarskym nožom reťazcov. Nielenže parsujú premenné, ako bolo spomenuté, ale 
+aj všetky druhy špeciálnych znakov, ako `\n` pre nový riadok, `\t` pre tabulátor, atď.
 
 {% highlight php %}
-<?php
-echo 'phptherightway is ' . $adjective . '.'     // a single quotes example that uses multiple concatenating for
-    . "\n"                                       // variables and escaped string
-    . 'I love learning' . $code . '!';
+<?php 
+echo 'phptherightway is ' . $adjective . '.'  // príklad reťazca s jednoduchými úvodzovkami,
+    . "\n"                                    // ktorý používa niekoľko zreťazení pre
+    . 'I love learning ' . $code . '!';       // premenné a špeciálne znaky
 
 // vs
 
-echo "phptherightway is $adjective.\n I love learning $code!"  // Instead of multiple concatenating, double quotes
-                                                               // enables us to use a parsable string
+echo "phptherightway is $adjective.\n I love learning $code!" // Použitie dvojitých úvodzoviek na miesto zreťazenia
+                                                              // umožňuje použitie parsovateľných reťazcov
+                                                               
 {% endhighlight %}
 
-Double quotes can contain variables; this is called "interpolation".
+Dvojité úvodzovky môžu obsahovať premenné. Toto sa nazýva "interpolácia".
 
 {% highlight php %}
 <?php
@@ -213,30 +214,30 @@ $juice = 'plum';
 echo "I like $juice juice";    // Output: I like plum juice
 {% endhighlight %}
 
-When using interpolation, it is often the case that the variable will be touching another character. This will result
-in some confusion as to what is the name of the variable, and what is a literal character.
+Pri použití interpolácie sa často stáva, že premenná interferuje s iným znakom. Toto môže mať za následok zmätok
+v tom, čo je názov premennej a čo je doslovný znak.
 
-To fix this problem, wrap the variable within a pair of curly brackets.
+Pre vyriešenie tohto problému možno obaliť premennú v kučeravých zátvorkách.
 
 {% highlight php %}
 <?php
 $juice = 'plum';
-echo "I drank some juice made of $juices";    // $juice cannot be parsed
+echo "I drank some juice made of $juices";    // premenná $juice nemôže byť parsovaná
 
 // vs
 
 $juice = 'plum';
-echo "I drank some juice made of {$juice}s";    // $juice will be parsed
+echo "I drank some juice made of {$juice}s";    // premenná $juice bude parsovaná
 
 /**
- * Complex variables will also be parsed within curly brackets
+ * Komplexné premenné budú taktiež parsované v rámci kučeravých zátvoriek
  */
 
 $juice = array('apple', 'orange', 'plum');
-echo "I drank some juice made of {$juice[1]}s";   // $juice[1] will be parsed
+echo "I drank some juice made of {$juice[1]}s";   // $juice[1] bude parsované
 {% endhighlight %}
 
-* [Double quotes](http://php.net/language.types.string#language.types.string.syntax.double)
+* [Dvojité úvodzovky](http://php.net/language.types.string#language.types.string.syntax.double)
 
 #### Nowdoc syntax
 
