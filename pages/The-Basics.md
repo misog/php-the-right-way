@@ -39,9 +39,9 @@ if (strpos('testovanie', 'test') !== false) {  //  na základe striktného porov
 
 ### Príkaz if
 
-Pri použití príkazov 'if/else' vo funkcií, alebo metóde triedy je bežnou mylnou predstavou, že pre deklaráciu možných
-následkov musí byť v spojení s 'if' použitý aj príkaz 'else'. Ak je ale požadovaným výsledkom návratová hodnota,
-potom príkaz 'else' nie je potrebný. Príkaz 'return' v tomto prípade ukončí funkciu, čím sa použitie 'else' stáva
+Pri použití príkazov `if/else` vo funkcií, alebo metóde triedy je bežnou mylnou predstavou, že pre deklaráciu možných
+následkov musí byť v spojení s `if` použitý aj príkaz `else`. Ak je ale požadovaným výsledkom návratová hodnota,
+potom príkaz `else` nie je potrebný. Príkaz `return` v tomto prípade ukončí funkciu, čím sa použitie `else` stáva
 diskutabilné.
 
 {% highlight php %}
@@ -78,13 +78,13 @@ function test($a)
 
 ### Príkaz switch
 
-Použitie príkazu switch je výborným spôsobom ako predísť nekonečným vetveniam, ku ktorým môže dôjsť v prípade
-použitia 'if' a 'elseif'. Pri použití je ale treba dávať pozor na niekoľko vecí:
+Použitie príkazu `switch` je výborným spôsobom ako predísť nekonečným vetveniam, ku ktorým môže dôjsť v prípade
+použitia `if` a `elseif`. Pri použití je ale treba dávať pozor na niekoľko vecí:
 
-- príkaz switch porovnáva hodnoty, ale neporovnáva typ (ekvivalent k '==')
-- príkaz iteruje cez všetky vetvy až pokiaľ nenájde zhodu. Ak sa zhoda nenájde, potom použije vetvu default (ak je definovaná)
-- bez použitia 'break' vo vetve, príkaz pokračuje v iterácii až pokiaľ na break, alebo return nenarazí 
-- v prípade použitia príkazu 'return' je ďalšie použitie 'break' zbytočné, nakoľko return funkciu ukončí
+- príkaz `switch` porovnáva hodnoty, ale neporovnáva typ (ekvivalent k '==')
+- príkaz iteruje cez všetky vetvy až pokiaľ nenájde zhodu. Ak sa zhoda nenájde, potom použije vetvu `default` (ak je definovaná)
+- bez použitia `break` vo vetve, príkaz pokračuje v iterácii až pokiaľ na `break`, alebo `return` nenarazí 
+- v prípade použitia príkazu `return` je ďalšie použitie `break` zbytočné, nakoľko `return` funkciu ukončí
 
 {% highlight php %}
 <?php
@@ -167,7 +167,7 @@ odlišnú syntax a mierne odlišné správanie.
 
 #### Jednoduché úvodzovky
 
-Jednoduché úvodzovky slúžia na označovanie "doslovných reťazcov". Doslovné reťazce sa nepokúšajú parsovať
+Jednoduché úvodzovky slúžia na označovanie „doslovných reťazcov“. Doslovné reťazce sa nepokúšajú parsovať
 špeciálne znaky, alebo premenné.
 
 Ak použijete jednoduché úvodzovky, názov premennej môžete vložiť do reťazca nasledovne: `'nejaká $vec'`. Na výstupe
@@ -206,7 +206,7 @@ echo "phptherightway is $adjective.\n I love learning $code!" // Použitie dvoji
                                                                
 {% endhighlight %}
 
-Dvojité úvodzovky môžu obsahovať premenné. Toto sa nazýva "interpolácia".
+Dvojité úvodzovky môžu obsahovať premenné. Toto sa nazýva „interpolácia“.
 
 {% highlight php %}
 <?php
@@ -393,14 +393,14 @@ return ($a != 3 && $b != 4) || $c == 5;
 {% endhighlight %}
 
 Od PHP verzie 5.3 je možné vynechať strednú časť ternárneho operátora.
-Výraz "`expr1 ?: expr3`" vráti `expr1` ak výraz `expr1` je vyhodnotený ako TRUE, inak vráti hodnotu expr3.
+Výraz „`expr1 ?: expr3`“ vráti `expr1` ak výraz `expr1` je vyhodnotený ako TRUE, inak vráti hodnotu expr3.
 
 * [Ternárne operátory](http://php.net/language.operators.comparison)
 
 ## Deklarácia premenných
 
 Kedysi sa programátori pokúšali deklaráciou preddefinovaných premenných s rozdielnymi menami spraviť
-ich kód "čistejší". Čo toto v skutočnosti spôsobuje je dvojnásobné množstvo pamäte, ktorú program používa.
+ich kód „čistejší“. Čo toto v skutočnosti spôsobuje je dvojnásobné množstvo pamäte, ktorú program používa.
 Povedzme, že v nasledujúcom príklade obsahuje reťazec 1MB dát. Vytvorením premennej vzrastie potreba pamäte na 2MB.
 
 {% highlight php %}
