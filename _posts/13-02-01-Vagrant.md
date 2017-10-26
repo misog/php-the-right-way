@@ -23,7 +23,7 @@ Ak na začiatok potrebujete trochu pomôcť s použitím Vagrant-u, existujú ni
 - [Rove][Rove]: služba, ktorá umožňuje generovať Vagrant konfiguráciu so zaužívanými nastaveniami.
 Automatická konfigurácia je zabezpečená pomocou softvéru Chef.
 - [Puphpet][Puphpet]: jednoduché grafické rozhranie na nastavenie virtuálnych strojov pre vývoj v PHP.
-**Je silne zamerané na PHP**. Okrem lokálnych virtuálnych strojov je možné generovať nastavenie aj
+**Je zamerané na PHP**. Okrem lokálnych virtuálnych strojov je možné generovať nastavenie aj
 pre použitie v cloud-e. Konfigurácia je zabezpečená pomocou softvéru Puppet.
 - [Protobox][Protobox]: je vrstva na vrchole Vagrant-u a webové grafické rozhranie na nastavenie virtuálnych strojov
 pre vývoj webových aplikácií. Jediný súbor YAML kontroluje všetko, čo je na virtuálnom počítači nainštalované.
