@@ -1,47 +1,48 @@
 ---
 layout: page
-title:  The Basics
+title: Základy
 sitemap: true
 ---
 
-# The Basics
+# Základy
 
-## Comparison operators
+## Relačné operátory
 
-Comparison operators are an often overlooked aspect of PHP, which can lead to many unexpected outcomes. One such
-problem stems from strict comparisons (the comparison of booleans as integers).
+Relačné operátory sú často prehliadaným aspektom PHP, čo môže viesť k mnohým nečakaným výsledkom. Jeden z takýchto
+problémov pramení v použití striktného porovnávania (porovnávanie boolean ako integer). 
 
 {% highlight php %}
 <?php
-$a = 5;   // 5 as an integer
+$a = 5;                  // číslo 5 ako integer 
 
-var_dump($a == 5);       // compare value; return true
-var_dump($a == '5');     // compare value (ignore type); return true
-var_dump($a === 5);      // compare type/value (integer vs. integer); return true
-var_dump($a === '5');    // compare type/value (integer vs. string); return false
+var_dump($a == 5);       // porovnanie hodnôt; návratová hodnota true
+var_dump($a == '5');     // porovnanie hodnôt (ignorovanie typov); návratová hodnota true
+var_dump($a === 5);      // porovnanie typov a hodnôt (integer vs. integer); návratová hodnota true
+var_dump($a === '5');    // porovnanie typov a hodnôt (integer vs. string); návratová hodnota false
 
-//Equality comparisons
-if (strpos('testing', 'test')) {    // 'test' is found at position 0, which is interpreted as the boolean 'false'
-    // code...
+// Porovnávanie rovnosti
+if (strpos('testovanie', 'test')) {  // 'test' sa nachádza na pozícii 0, ktorá je interpretovaná ako hodnota boolean 'false'
+    // kód...
 }
 
-// vs. strict comparisons
-if (strpos('testing', 'test') !== false) {    // true, as strict comparison was made (0 !== false)
-    // code...
+// ... oproti striktnému porovnávaniu
+if (strpos('testovanie', 'test') !== false) {  //  na základe striktného porovnávania (0 !== false) je výsledok 'true'
+    // kód...
 }
 {% endhighlight %}
 
-* [Comparison operators](http://php.net/language.operators.comparison)
-* [Comparison table](http://php.net/types.comparisons)
-* [Comparison cheatsheet](http://phpcheatsheets.com/index.php?page=compare)
+* [Relačné operátory](http://php.net/language.operators.comparison)
+* [Tabuľka pre porovnanie typov](http://php.net/types.comparisons)
+* [Ťahák pre porovnanie typov](http://phpcheatsheets.com/index.php?page=compare)
 
-## Conditional statements
+## Príkazy vetvenia
 
-### If statements
+### Príkaz if
 
-While using 'if/else' statements within a function or class method, there is a common misconception that 'else' must be used
-in conjunction to declare potential outcomes. However if the outcome is to define the return value, 'else' is not
-necessary as 'return' will end the function, causing 'else' to become moot.
+Pri použití príkazov 'if/else' vo funkcií, alebo metóde triedy je bežnou mylnou predstavou, že pre deklaráciu možných
+následkov musí byť v spojení s 'if' použitý aj príkaz 'else'. Ak je ale požadovaným výsledkom návratová hodnota,
+potom príkaz 'else' nie je potrebný. Príkaz 'return' v tomto prípade ukončí funkciu, čím sa použitie 'else' stáva
+diskutabilné.
 
 {% highlight php %}
 <?php
@@ -54,17 +55,17 @@ function test($a)
     }
 }
 
-// vs.
+// oproti použitiu
 
 function test($a)
 {
     if ($a) {
         return true;
     }
-    return false;    // else is not necessary
+    return false;    // 'else' nie je potrebné
 }
 
-// or even shorter:
+// prípadne ešte kratšieho zápisu
 
 function test($a)
 {
@@ -73,46 +74,47 @@ function test($a)
 
 {% endhighlight %}
 
-* [If statements](http://php.net/control-structures.if)
+* [Príkaz if v PHP manuále](http://php.net/control-structures.if)
 
-### Switch statements
+### Príkaz switch
 
-Switch statements are a great way to avoid typing endless if's and elseif's, but there are a few things to be aware of:
+Použitie príkazu switch je výborným spôsobom ako predísť nekonečným vetveniam, ku ktorým môže dôjsť v prípade
+použitia 'if' a 'elseif'. Pri použití je ale treba dávať pozor na niekoľko vecí:
 
-- Switch statements only compare values, and not the type (equivalent to '==')
-- They Iterate case by case until a match is found. If no match is found, then the default is used (if defined)
-- Without a 'break', they will continue to implement each case until reaching a break/return
-- Within a function, using 'return' alleviates the need for 'break' as it ends the function
+- príkaz switch porovnáva hodnoty, ale neporovnáva typ (ekvivalent k '==')
+- príkaz iteruje cez všetky vetvy až pokiaľ nenájde zhodu. Ak sa zhoda nenájde, potom použije vetvu default (ak je definovaná)
+- bez použitia 'break' vo vetve, príkaz pokračuje v iterácii až pokiaľ na break, alebo return nenarazí 
+- v prípade použitia príkazu 'return' je ďalšie použitie 'break' zbytočné, nakoľko return funkciu ukončí
 
 {% highlight php %}
 <?php
-$answer = test(2);    // the code from both 'case 2' and 'case 3' will be implemented
+$answer = test(2);    // vykoná kód vo vetvách 'case 2' aj 'case 3'
 
 function test($a)
 {
     switch ($a) {
         case 1:
-            // code...
-            break;             // break is used to end the switch statement
+            // kód...
+            break;            // príkaz break je určený pre ukončenie podmienky príkazu switch
         case 2:
-            // code...         // with no break, comparison will continue to 'case 3'
+            // kód...         // bez použitia break bude porovnávanie pokračovať ďalej vo vetve 'case 3'
         case 3:
-            // code...
-            return $result;    // within a function, 'return' will end the function
+            // kód...
+            return $result;   // 'return' ukončí beh funkcie
         default:
-            // code...
+            // kód...
             return $error;
     }
 }
 {% endhighlight %}
 
-* [Switch statements](http://php.net/control-structures.switch)
+* [Príkaz switch v PHP manuále](http://php.net/control-structures.switch)
 * [PHP switch](http://phpswitch.com/)
 
-## Global namespace
+## Globálne menné priestory
 
-When using namespaces, you may find that internal functions are hidden by functions you wrote. To fix this, refer to
-the global function by using a backslash before the function name.
+Pri použití menných priestorov, sa vám môže stať, že interné funkcie budú skryté za funkciami, ktoré ste napísali vy.
+Pre použitie takýchto globálnych funkcií, použite spätné lomítko pred názvom funkcie.
 
 {% highlight php %}
 <?php
@@ -120,90 +122,91 @@ namespace phptherightway;
 
 function fopen()
 {
-    $file = \fopen();    // Our function name is the same as an internal function.
-                         // Execute the function from the global space by adding '\'.
+    $file = \fopen();    // Názov vašej funkcie je rovnaký, ako názov internej funkcie.
+                         // Vyvolá funkciu z globálneho menného priestory pomocou pridania '\'. 
 }
 
 function array()
 {
-    $iterator = new \ArrayIterator();    // ArrayIterator is an internal class. Using its name without a backslash
-                                         // will attempt to resolve it within your namespace.
+    $iterator = new \ArrayIterator();    // ArrayIterator je interná trieda. Pri použití tejto triedy bez spätného lomítka
+                                         // sa ju PHP najprv pokúsi nájsť v rámci vášho menného priestoru.
 }
 {% endhighlight %}
 
-* [Global space](http://php.net/language.namespaces.global)
-* [Global rules](http://php.net/userlandnaming.rules)
+* [Globálne menné priestory](http://php.net/language.namespaces.global)
+* [Globálne pravidlá](http://php.net/userlandnaming.rules)
 
-## Strings
+## Reťazce
 
-### Concatenation
+### Spájanie reťazcov
 
-- If your line extends beyond the recommended line length (120 characters), consider concatenating your line
-- For readability it is best to use concatenation operators over concatenating assignment operators
-- While within the original scope of the variable, indent when concatenation uses a new line
+- ak dĺžka riadku presiahne doporučenú dĺžku (120 znakov), zvážte spájanie riadkov
+- pre lepšiu čitateľnosť je lepšie použiť operátor zreťazenia než zreťazujúci operátor priradenia
+- ak zreťazujete riadky v pôvodnom rozsahu premennej, potom nové zreťazené riadky zarovnajte
 
 
 {% highlight php %}
 <?php
-$a  = 'Multi-line example';    // concatenating assignment operator (.=)
+$a  = 'Multi-line example';    // zreťazujúci operátor priradenia (.=)
 $a .= "\n";
 $a .= 'of what not to do';
 
 // vs
 
-$a = 'Multi-line example'      // concatenation operator (.)
-    . "\n"                     // indenting new lines
+$a = 'Multi-line example'      // operátor zreťazenia (.)
+    . "\n"                     // odsadenie nových riadkov
     . 'of what to do';
 {% endhighlight %}
 
-* [String Operators](http://php.net/language.operators.string)
+* [Reťazcové operátory](http://php.net/language.operators.string)
 
-### String types
+### Druhy reťazcov
 
-Strings are a series of characters, which should sound fairly simple. That said, there are a few different types of
-strings and they offer slightly different syntax, with slightly different behaviors.
+Reťazce sú sériou znakov, čo by malo znieť pomerne jednoducho. Je niekoľko druhov reťazcov. Každý druh má mierne
+odlišnú syntax a mierne odlišné správanie. 
 
-#### Single quotes
+#### Jednoduché úvodzovky
 
-Single quotes are used to denote a "literal string". Literal strings do not attempt to parse special characters or
-variables.
+Jednoduché úvodzovky slúžia na označovanie "doslovných reťazcov". Doslovné reťazce sa nepokúšajú parsovať
+špeciálne znaky, alebo premenné.
 
-If using single quotes, you could enter a variable name into a string like so: `'some $thing'`, and you would see the
-exact output of `some $thing`. If using double quotes, that would try to evaluate the `$thing` variable name and show
-errors if no variable was found.
+Ak použijete jednoduché úvodzovky, názov premennej môžete vložiť do reťazca nasledovne: `'nejaká $vec'`. Na výstupe
+následne uvidíte presne výstup `nejaká $vec`. Pri použití dvojitých úvodzoviek sa PHP pokúsi vyhodnotiť premennú `$vec`
+a ak premenná nebola nájdená, potom zobrazí chyby.
 
 
 {% highlight php %}
 <?php
-echo 'This is my string, look at how pretty it is.';    // no need to parse a simple string
+echo 'Toto je môj reťazec. Pozri aký je krásny.';    // jednoduchý reťazec nie je nutné parsovať
 
 /**
- * Output:
+ * Výstup:
  *
- * This is my string, look at how pretty it is.
+ * Toto je môj reťazec. Pozri aký je krásny.
  */
 {% endhighlight %}
 
-* [Single quote](http://php.net/language.types.string#language.types.string.syntax.single)
+* [Jednoduché úvodzovky](http://php.net/language.types.string#language.types.string.syntax.single)
 
-#### Double quotes
+#### Dvojité úvodzovky
 
-Double quotes are the Swiss Army Knife of strings. They will not only parse variables as mentioned above, but all sorts
-of special characters, like `\n` for newline, `\t` for a tab, etc.
+Dvojité úvodzovky sú švajčiarskym nožom reťazcov. Nielenže parsujú premenné, ako bolo spomenuté, ale 
+aj všetky druhy špeciálnych znakov, ako `\n` pre nový riadok, `\t` pre tabulátor, atď.
 
 {% highlight php %}
-<?php
-echo 'phptherightway is ' . $adjective . '.'     // a single quotes example that uses multiple concatenating for
-    . "\n"                                       // variables and escaped string
-    . 'I love learning' . $code . '!';
+<?php 
+echo 'phptherightway is ' . $adjective . '.'  // príklad reťazca s jednoduchými úvodzovkami,
+    . "\n"                                    // ktorý používa niekoľko zreťazení pre
+    . 'I love learning ' . $code . '!';       // premenné a špeciálne znaky
 
 // vs
 
-echo "phptherightway is $adjective.\n I love learning $code!"  // Instead of multiple concatenating, double quotes
-                                                               // enables us to use a parsable string
+echo "phptherightway is $adjective.\n I love learning $code!" // Použitie dvojitých úvodzoviek na miesto zreťazenia
+                                                              // umožňuje použitie parsovateľných reťazcov
+                                                               
 {% endhighlight %}
 
-Double quotes can contain variables; this is called "interpolation".
+Dvojité úvodzovky môžu obsahovať premenné. Toto sa nazýva "interpolácia".
 
 {% highlight php %}
 <?php
@@ -211,47 +214,47 @@ $juice = 'plum';
 echo "I like $juice juice";    // Output: I like plum juice
 {% endhighlight %}
 
-When using interpolation, it is often the case that the variable will be touching another character. This will result
-in some confusion as to what is the name of the variable, and what is a literal character.
+Pri použití interpolácie sa často stáva, že premenná interferuje s iným znakom. Toto môže mať za následok zmätok
+v tom, čo je názov premennej a čo je doslovný znak.
 
-To fix this problem, wrap the variable within a pair of curly brackets.
+Pre vyriešenie tohto problému možno obaliť premennú v kučeravých zátvorkách.
 
 {% highlight php %}
 <?php
 $juice = 'plum';
-echo "I drank some juice made of $juices";    // $juice cannot be parsed
+echo "I drank some juice made of $juices";    // premenná $juice nemôže byť parsovaná
 
 // vs
 
 $juice = 'plum';
-echo "I drank some juice made of {$juice}s";    // $juice will be parsed
+echo "I drank some juice made of {$juice}s";    // premenná $juice bude parsovaná
 
 /**
- * Complex variables will also be parsed within curly brackets
+ * Komplexné premenné budú taktiež parsované v rámci kučeravých zátvoriek
  */
 
 $juice = array('apple', 'orange', 'plum');
-echo "I drank some juice made of {$juice[1]}s";   // $juice[1] will be parsed
+echo "I drank some juice made of {$juice[1]}s";   // $juice[1] bude parsované
 {% endhighlight %}
 
-* [Double quotes](http://php.net/language.types.string#language.types.string.syntax.double)
+* [Dvojité úvodzovky](http://php.net/language.types.string#language.types.string.syntax.double)
 
-#### Nowdoc syntax
+#### Syntax Nowdoc
 
-Nowdoc syntax was introduced in 5.3 and internally behaves the same way as single quotes except it is suited toward the
-use of multi-line strings without the need for concatenating.
+Syntax Nowdoc bola zavedená v PHP 5.3 a interne sa správa rovnako ako jednoduché úvodzovky. Okrem toho je vhodná
+pre použitie v mnohoriadkových reťazcoch bez potreby spájania.
 
 {% highlight php %}
 <?php
-$str = <<<'EOD'             // initialized by <<<
+$str = <<<'EOD'             // inicializované s <<<
 Example of string
 spanning multiple lines
 using nowdoc syntax.
 $a does not parse.
-EOD;                        // closing 'EOD' must be on it's own line, and to the left most point
+EOD;                        // ukončenie 'EOD' musí byť na samostatnom riadku bez odsadenia
 
 /**
- * Output:
+ * Výstup:
  *
  * Example of string
  * spanning multiple lines
@@ -260,26 +263,26 @@ EOD;                        // closing 'EOD' must be on it's own line, and to th
  */
 {% endhighlight %}
 
-* [Nowdoc syntax](http://php.net/language.types.string#language.types.string.syntax.nowdoc)
+* [Syntax Nowdoc](http://php.net/language.types.string#language.types.string.syntax.nowdoc)
 
-#### Heredoc syntax
+#### Syntax Heredoc
 
-Heredoc syntax internally behaves the same way as double quotes except it is suited toward the use of multi-line
-strings without the need for concatenating.
+Syntax Heredoc sa interne správa rovnako ako dvojité úvodzovky. Okrem toho je vhodná pre použitie
+v mnohoriadkových reťazcoch bez potreby spájania.
 
 {% highlight php %}
 <?php
 $a = 'Variables';
 
-$str = <<<EOD               // initialized by <<<
+$str = <<<EOD               // inicializované s <<<
 Example of string
 spanning multiple lines
 using heredoc syntax.
 $a are parsed.
-EOD;                        // closing 'EOD' must be on it's own line, and to the left most point
+EOD;                        // ukončenie 'EOD' musí byť na samostatnom riadku bez odsadenia
 
 /**
- * Output:
+ * Výstup:
  *
  * Example of string
  * spanning multiple lines
@@ -288,31 +291,31 @@ EOD;                        // closing 'EOD' must be on it's own line, and to th
  */
 {% endhighlight %}
 
-* [Heredoc syntax](http://php.net/language.types.string#language.types.string.syntax.heredoc)
+* [Syntax Heredoc](http://php.net/language.types.string#language.types.string.syntax.heredoc)
 
-### Which is quicker?
+### Ktorá syntax je rýchlejšia?
 
-There is a myth floating around that single quote strings are fractionally quicker than double quote strings. This is
-fundamentally not true.
+Okolo reťazcov v jednoduchých úvodzovkách je mýtus že sú oveľa rýchlejšie ako tie v dvojitých. Toto v podstate
+nie je pravda.
 
-If you are defining a single string and not trying to concatenate values or anything complicated, then either a single
-or double quoted string will be entirely identical. Neither are quicker.
+Ak zadefinujete jeden reťazec a nesnažíte sa spájať hodnoty, alebo niečo iné komplikované, potom oba reťazce
+budú identické. Ani jeden z nich nie je rýchlejší.
 
-If you are concatenating multiple strings of any type, or interpolate values into a double quoted string, then the
-results can vary. If you are working with a small number of values, concatenation is minutely faster. With a lot of
-values, interpolating is minutely faster.
+Ak spájate niekoľko reťazcov akéhokoľvek typu, alebo interpolujete hodnoty v reťazcoch v dvojitých úvodzovkách, potom
+sa hodnoty môžu líšiť. Ak pracujete s malým množstvom hodnôt, potom je zreťazenie rýchlejšie. Pre väčší počet
+hodnôt je naopak rýchlejšia interpolácia.
 
-Regardless of what you are doing with strings, none of the types will ever have any noticeable impact on your
-application. Trying to rewrite code to use one or the other is always an exercise in futility, so avoid this micro-
-optimization unless you really understand the meaning and impact of the differences.
+Bez ohľadu na to, čo s reťazcami robíte, ani jeden z typov nebude mať nikdy na vašu aplikáciu výrazný vplyv. Snaha
+o prepísanie kódu pre použitie jedného, alebo druhého je zbytočná práca, takže sa snažte vyhnúť tejto mikrooptimalizácii
+pokiaľ naozaj nechápete význam a vplyv medzi rozdielmi.
 
 * [Disproving the Single Quotes Performance Myth](http://nikic.github.io/2012/01/09/Disproving-the-Single-Quotes-Performance-Myth.html)
 
 
-## Ternary operators
+## Ternárne operátory
 
-Ternary operators are a great way to condense code, but are often used in excess. While ternary operators can be
-stacked/nested, it is advised to use one per line for readability.
+Ternárne operátory sú výbornou cestou, ako zhustiť kód. Často sú ale používané prebytočne. Pokiaľ môžu byť ternárne
+operátory vetvené/vnorené, odporúča sa pre lepšiu čitateľnosť používať jeden na riadok.
 
 {% highlight php %}
 <?php
@@ -320,95 +323,94 @@ $a = 5;
 echo ($a == 5) ? 'yay' : 'nay';
 {% endhighlight %}
 
-In comparison, here is an example that sacrifices all forms of readability for the sake of reducing the line count.
+Pre porovnanie je tu príklad, ktorý na úkor redukcie príkazu na jeden riadok obetuje všetky formy čitateľnosti.
 
 {% highlight php %}
 <?php
-echo ($a) ? ($a == 5) ? 'yay' : 'nay' : ($b == 10) ? 'excessive' : ':(';    // excess nesting, sacrificing readability
+echo ($a) ? ($a == 5) ? 'yay' : 'nay' : ($b == 10) ? 'excessive' : ':(';    // nadmerné vetvenie, obetovanie čitateľnosti
 {% endhighlight %}
 
-To 'return' a value with ternary operators use the correct syntax.
+Pre návratovú hodnotu s ternárnymi operátormi použite správnu syntax. 
 
 {% highlight php %}
 <?php
 $a = 5;
-echo ($a == 5) ? return true : return false;    // this example will output an error
+echo ($a == 5) ? return true : return false;    // tento príklad vráti chybu
 
 // vs
 
 $a = 5;
-return ($a == 5) ? 'yay' : 'nope';    // this example will return 'yay'
+return ($a == 5) ? 'yay' : 'nope';    // návratová hodnota z tohto príkladu bude 'yay'
 
 {% endhighlight %}
 
-It should be noted that you do not need to use a ternary operator for returning a boolean value. An example of this
-would be.
+Treba poznamenať, že pre návratovú hodnoty typu bool nie je potrebné použiť ternárny operátor. Príklad:
 
 {% highlight php %}
 <?php
 $a = 3;
-return ($a == 3) ? true : false; // Will return true or false if $a == 3
+return ($a == 3) ? true : false; // návratová hodnota bude true ak $a == 3, false v ostatných prípadoch
 
 // vs
 
 $a = 3;
-return $a == 3; // Will return true or false if $a == 3
+return $a == 3; // návratová hodnota bude true ak $a == 3, false v ostatných prípadoch
 
 {% endhighlight %}
 
-This can also be said for all operations(===, !==, !=, == etc).
+Toto platí pre všetky operátory (===, !==, !=, == etc).
 
-#### Utilising brackets with ternary operators for form and function
+#### Použitie zátvoriek s ternárnymi operátormi pre formu a funkciu
 
-When utilising a ternary operator, brackets can play their part to improve code readability and also to include unions
-within blocks of statements. An example of when there is no requirement to use bracketing is:
+Pri používaní ternárnych operátorov môžu zátvorky zvýšiť čitateľnosť kódu. Príklad, pri ktorom nie je potreba
+použiť zátvorky:
 
 {% highlight php %}
 <?php
 $a = 3;
-return ($a == 3) ? "yay" : "nope"; // return yay or nope if $a == 3
+return ($a == 3) ? "yay" : "nope"; // návratová hodnota bude 'yay' ak $a == 3, 'nope' v ostatných prípadoch
 
 // vs
 
 $a = 3;
-return $a == 3 ? "yay" : "nope"; // return yay or nope if $a == 3
+return $a == 3 ? "yay" : "nope"; // návratová hodnota bude 'yay' ak $a == 3, 'nope' v ostatných prípadoch
 {% endhighlight %}
 
-Bracketing also affords us the capability of creating unions within a statement block where the block will be checked
-as a whole. Such as this example below which will return true if both ($a == 3 and $b == 4) are true and $c == 5 is
-also true.
+Použitie zátvoriek taktiež poskytuje možnosť vytvorenia zložených podmienok v rámci výrazu, ktoré budú
+vyhodnotené ako celok. Nasledujúci príklad bude mať návratovú hodnotu true ak obe podmienky `($a == 3 AND $b == 4)`
+a súčasne `$c == 5` sú vyhodnotené ako true.
 
 {% highlight php %}
 <?php
 return ($a == 3 && $b == 4) && $c == 5;
 {% endhighlight %}
 
-Another example is the snippet below which will return true if ($a != 3 AND $b != 4) OR $c == 5.
+Ďalším príkladom je nasledujúci útržok kódu, ktorý má návratovú hodnotu true ak `($a != 3 AND $b != 4) OR $c == 5`.
 
 {% highlight php %}
 <?php
 return ($a != 3 && $b != 4) || $c == 5;
 {% endhighlight %}
 
-Since PHP 5.3, it is possible to leave out the middle part of the ternary operator.
-Expression "expr1 ?: expr3" returns expr1 if expr1 evaluates to TRUE, and expr3 otherwise.
+Od PHP verzie 5.3 je možné vynechať strednú časť ternárneho operátora.
+Výraz "`expr1 ?: expr3`" vráti `expr1` ak výraz `expr1` je vyhodnotený ako TRUE, inak vráti hodnotu expr3.
 
-* [Ternary operators](http://php.net/language.operators.comparison)
+* [Ternárne operátory](http://php.net/language.operators.comparison)
 
-## Variable declarations
+## Deklarácia premenných
 
-At times, coders attempt to make their code "cleaner" by declaring predefined variables with a different name. What
-this does in reality is to double the memory consumption of said script. For the example below, let us say an example
-string of text contains 1MB worth of data, by copying the variable you've increased the scripts execution to 2MB.
+Kedysi sa programátori pokúšali deklaráciou preddefinovaných premenných s rozdielnymi menami spraviť
+ich kód "čistejší". Čo toto v skutočnosti spôsobuje je dvojnásobné množstvo pamäte, ktorú program používa.
+Povedzme, že v nasledujúcom príklade obsahuje reťazec 1MB dát. Vytvorením premennej vzrastie potreba pamäte na 2MB.
 
 {% highlight php %}
 <?php
-$about = 'A very long string of text';    // uses 2MB memory
+$about = 'A very long string of text';    // používa 2MB pamäte
 echo $about;
 
 // vs
 
-echo 'A very long string of text';        // uses 1MB memory
+echo 'A very long string of text';        // používa 1MB pamäte
 {% endhighlight %}
 
 * [Performance tips](http://web.archive.org/web/20140625191431/https://developers.google.com/speed/articles/optimizing-php)
