@@ -1,14 +1,15 @@
 ---
+title: Virtualizácia
 anchor: virtualization
 ---
 
-# Virtualization {#virtualization_title}
+# Virtualizácia {#virtualization_title}
 
-Running your application on different environments in development and production can lead to strange bugs popping up
-when you go live. It's also tricky to keep different development environments up to date with the same version for all
-libraries used when working with a team of developers.
+Beh vašej aplikácie v rozdielnom vývojovom a produkčnom prostredí môže viesť k objaveniu zvláštnych chýb
+po nasadení aplikácie do produkčného prostredia. Rôzne vývojové prostredia je taktiež ťažké udržať aktuálne
+s verziami knižníc používanými počas vývoja v rámci tímu vývojárov.
 
-If you are developing on Windows and deploying to Linux (or anything non-Windows) or are developing in a team, you
-should consider using a virtual machine. This sounds tricky, but besides the widely known virtualization environments
-like VMware or VirtualBox, there are additional tools that may help you setting up a virtual environment in a few easy
-steps.
+Ak vyvíjate v systéme Windows a aplikáciu nasadzujete na Linux (alebo hocičo iné ako Windows), alebo vyvíjate v tíme,
+potom by ste mali zvážiť použitie virtuálneho stroja. Môže to znieť zložito, ale okrem všeobecne známych virtualizačných
+prostredí, ako VMware alebo VirtualBox, existujú ďalšie nástroje, ktoré vám môžu pomôcť s nastavením virtuálneho prostredia
+v niekoľkých jednoduchých krokoch.

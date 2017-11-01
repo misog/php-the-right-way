@@ -1,5 +1,6 @@
 ---
+title: Praktiky v písaní kódu
 anchor: coding_practices
 ---
 
-# Coding Practices {#coding_practices_title}
+# Praktiky v písaní kódu {#coding_practices_title}
