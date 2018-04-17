@@ -70,7 +70,7 @@ Alternatívne, príkaz `composer init` vás bude sprevádzať vytvorením celéh
 composer install
 {% endhighlight %}
 
-Ďalej, pridajte tento riadok do primárneho PHP súboru vašej aplikácie - toto povie PHP aby použil Composer autoloader pre vaše projektové závislosti:
+Ďalej, pridajte tento riadok do primárneho PHP súboru vašej aplikácie - toto povie PHP, aby použil Composer samozavádzanie pre vaše projektové závislosti:
 
 {% highlight php %}
 <?php
