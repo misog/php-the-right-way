@@ -96,7 +96,7 @@ Pre prijímanie notifikácii o vydaniach nových verzií sa môžete registrova�
 
 ### Zaobchádzanie s globálnymi závislosťami
 
-Composer môže taktiež spracovávať globálne závislosti a ich binárky. Použitie je priame - všetko čo potrebujete je pridať slovo `global`. Napríklad, ak by ste chceli nainštalovať balík PHPUnit a mať ho dostupný globálne, spustili by ste tento príkaz:
+Composer môže taktiež spracovávať globálne závislosti a ich binárne súbory. Použitie je priame - všetko čo potrebujete je pridať slovo `global`. Napríklad, ak by ste chceli nainštalovať balík PHPUnit a mať ho dostupný globálne, spustili by ste tento príkaz:
 
 {% highlight console %}
 composer global require phpunit/phpunit
