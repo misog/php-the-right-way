@@ -102,7 +102,7 @@ Composer môže taktiež spracovávať globálne závislosti a ich binárne súb
 composer global require phpunit/phpunit
 {% endhighlight %}
 
-Toto vytvorí adresár `~/.composer` kde budú sídliť vaše globálne závislosti. Aby boli vaše nainštalované balíky dostupné všade, musíte ešte pridať cestu `~/.composer/vendor/bin` do premennej `$PATH`.
+Toto vytvorí adresár `~/.composer`, kde budú sídliť vaše globálne závislosti. Aby boli vaše nainštalované balíky dostupné všade, musíte ešte pridať cestu `~/.composer/vendor/bin` do premennej `$PATH`.
 
 * [Learn about Composer]
 
