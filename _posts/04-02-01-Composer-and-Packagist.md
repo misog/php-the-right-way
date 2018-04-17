@@ -5,7 +5,7 @@ anchor:  composer_and_packagist
 
 ## Composer a Packagist {#composer_and_packagist_title}
 
-Composer je **geniálny** správca závislostí pre PHP. Vymenúva závislosti vášho projektu v súbore `composer.json` a s niekoľkými jednoduchými príkazmi za vás dokáže stiahnuť projektové závislosti a nastaviť samozavádzanie. Composer je analogický ku NPM vo svete node.js alebo analogický ku Bundler vo svere Ruby.
+Composer je **geniálny** správca závislostí pre PHP. Vymenúva závislosti vášho projektu v súbore `composer.json` a s niekoľkými jednoduchými príkazmi za vás dokáže stiahnuť projektové závislosti a nastaviť samozavádzanie. Composer je analogický ku NPM vo svete node.js alebo analogický ku Bundler vo svete Ruby.
 
 Dnes existuje už mnoho PHP knižníc, ktoré sú kompatibilné s Composer a teda sú pripravené pre použitie vo vašom projekte. Tieto "balíčky" sú uvedené v oficiálnom repozitári [Packagist] pre Composer-kompatibilné PHP knižnice.
 
