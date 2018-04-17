@@ -8,7 +8,7 @@ Existuje množstvo PHP knižníc, frameworkov a komponentov z ktorých sa dá vy
 To ale dnes už nie je problém.
 
 V dnešnej dobe existujú dva hlavné systémy pre správu PHP balíkov - [Composer] a [PEAR]. Momentálne najpopulárnejší správca balíkov pre PHP je Composer a to aj napriek tomu, že po dlhý čas bol hlavným správcom balíkov PEAR.
-Znalosť histórie PEARU je užitočná, pretože aj keď ho nevyužívate, môžete naň nájsť referencie.
+Znalosť histórie PEAR-u je užitočná, pretože aj keď ho nevyužívate, môžete naň nájsť referencie.
 
 [Composer]: /#composer_and_packagist
 [PEAR]: /#pear
