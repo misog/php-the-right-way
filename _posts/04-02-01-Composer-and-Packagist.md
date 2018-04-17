@@ -31,7 +31,7 @@ Ak ste používateľ systému Windows tak najjednoduchším spôsobom inštalác
 
 ### Ako nainštalovať Composer (manuálne)
 
-Manuálna inštalácia Composer je pokročilá technika. Napriek tomu, existujú rôzne dôvody prečo by vývojár preferoval túto metódu voči použitiu interaktívnej inštalačnej rutiny. Interaktívna inštalácia kontroluje vašu PHP inštaláciu aby sa presvedčila, že:
+Manuálna inštalácia Composer je pokročilá technika. Napriek tomu, existujú rôzne dôvody prečo by vývojár uprednostnil túto metódu voči použitiu interaktívnej inštalačnej rutiny. Interaktívna inštalácia kontroluje vašu PHP inštaláciu aby sa presvedčila, že:
 
 - používa sa dostatočná veria PHP
 - `.phar` súbory sú spúšťané správne
