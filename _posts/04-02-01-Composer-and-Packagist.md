@@ -81,7 +81,7 @@ Teraz môžete používať vaše projektové závislosti - budú automaticky na�
 
 ### Aktualizácia vašich závislostí
 
-Composer vytvára súbor zvaný `composer.lock`, ktorý obsahuje informáciu o presnej verzii každého balíka, ktorý bol stiahnutý keď ste prvý krát spustili príkaz `composer install`. Ak zdielate váš projekt s ostatnými programátormi a súbor `composer.lock` je súčasťou vašej distribúcie tak keď títo programátori spustia príkaz `composer install`, dostanú rovnaké verzie balíkov ako vy. 
+Composer vytvára súbor zvaný `composer.lock`, ktorý obsahuje informáciu o presnej verzii každého balíka, ktorý bol stiahnutý keď ste prvý krát spustili príkaz `composer install`. Ak zdielate váš projekt s ostatnými programátormi a súbor `composer.lock` je súčasťou vašej distribúcie, tak keď títo programátori spustia príkaz `composer install`, dostanú rovnaké verzie balíkov ako vy. 
 Pre aktualizovanie vašich závislostí spustite príkaz `composer update`.
 
 Toto je najviac užitočné keď definujete vaše flexibilné požiadavky na verzie. Napríklad, požiadavka na verziu `~1.8` znamená "čokoľvek novšie ako `1.8.0` ale staršie ako `2.0.x-dev`". Taktiež môžete využiť náhradný znak `*`, teda `1.8.*`. Príkaz `composer update` teraz zaktualizuje všetky vaše závislosti na najnovšiu verziu ktorá spĺňa definované obmedzenia. 
