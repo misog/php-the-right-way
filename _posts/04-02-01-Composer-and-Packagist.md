@@ -25,7 +25,7 @@ Vyššie uvedené riadky stiahnu `composer.phar` (PHP binárny archív). Pre spr
 
 **Bezpečnostná poznámka:** Ak chcete vložiť uvedený kód priamo do interpretera, najprv si ho tu prečítajte aby ste sa presvedčili, že je bezpečný.
 
-#### Inštalácia na Windows
+#### Inštalácia na systéme Windows
 
 Ak ste používateľ Windows tak najjednoduchším spôsobom inštalácie je využitie inštalátora [ComposerSetup], ktorý vykoná globálnu inštaláciu a nastaví `$PATH` takým spôsobom, že budete môcť zavolať `composer` z akéhokoľvek adresára vo vašom príkazovom riadku.
 
